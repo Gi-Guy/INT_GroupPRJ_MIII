@@ -42,3 +42,72 @@ export async function register(req: Request, res: Response) :Promise<void> {
         res.status(500).json({ message: 'Server error', error: err });
     }
 }
+export async function loginUser(req: Request, res: Response): Promise<void> {
+  try {
+    const { username, password } = req.body;
+
+    const user = await UserModel.findOne({ username });
+    if (!user) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
+        expiresIn: '1d'});
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax'
+    });
+
+    res.status(200).json({ message: 'Login successful' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+}
+export async function logoutUser(req: Request, res: Response): Promise<void> {
+    try {
+      res.clearCookie('token', {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax'
+      });
+      res.status(200).json({ message: 'Logged out successfully' });
+    } catch (err) {
+      res.status(500).json({ message: 'Server error', error: err });
+    }
+  }
+  export async function getCurrentUser(req: Request, res: Response): Promise<void> {
+    try {
+      const userId = (req as any).user?.id;
+      if (!userId) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+      }
+  
+      const user = await UserModel.findOne({ id: userId }).select('-password');
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+  
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json({ message: 'Server error', error: err });
+    }
+  }
+  export async function getAllUsers(req: Request, res: Response): Promise<void> {
+    try {
+      const users = await UserModel.find().select('-password');
+      res.status(200).json(users);
+    } catch (err) {
+      res.status(500).json({ message: 'Server error', error: err });
+    }
+  }
