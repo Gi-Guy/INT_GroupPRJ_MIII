@@ -4,3 +4,4 @@ export async function initApp(root: HTMLPreElement) {
 
     root.textContent = JSON.stringify(data, null, 2);
 }
+
