@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
-const JWT_SECRET_KEY = 'super-secret-key';
+import { JWT_SECRET_KEY } from '../app';
 
 export const authenticate: RequestHandler = (req, res, next) => {
   const token = req.cookies?.token;
