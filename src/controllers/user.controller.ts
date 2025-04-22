@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { randomUUID } from 'crypto';
 import { UserModel } from '../models/user.model';
 import { User } from '../types/user.type';
+import { JWT_SECRET_KEY } from '../app';
 
 export async function register(req: Request, res: Response) :Promise<void> {
     try {
@@ -27,8 +28,7 @@ export async function register(req: Request, res: Response) :Promise<void> {
             registeredAt: Date.now()
         };
         await UserModel.create(newUser);
-        const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET as string, {
-            expiresIn: '1d'});
+        const token = jwt.sign({ id: newUser.id }, JWT_SECRET_KEY, { expiresIn: '1d' });
         res.cookie('token', token, {
             httpOnly: true,
             secure:false,
@@ -58,8 +58,7 @@ export async function loginUser(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-        expiresIn: '1d'});
+    const token = jwt.sign({ id: user.id }, JWT_SECRET_KEY, { expiresIn: '1d' });
 
     res.cookie('token', token, {
       httpOnly: true,
