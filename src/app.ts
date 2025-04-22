@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import userRouter from './routes/user.route';
 import exerciseRouter from './routes/exercise.route';
+import workoutPlanRoutes from './routes/workoutPlan.route';
 
 const app = express();
 const PORT = 3000;
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 app.use('/api/user', userRouter);
 app.use('/api/exercise', exerciseRouter);
+app.use('/api/workout-plans', workoutPlanRoutes);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
