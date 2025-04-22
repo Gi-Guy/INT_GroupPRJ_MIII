@@ -1,18 +1,34 @@
 {
-  "name": "int-fs-nov-24-project-starter",
+  "name": "fitlog-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "/html/index.html",
+  "description": "Fitlog Training Planner",
+  "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "sass": "npm-run-all --parallel sass:main sass:css",
+    "sass:main": "sass public/styles.scss public/styles.css --no-source-map",
+    "sass:css": "sass public/css:public/css --no-source-map",
+    "build": "tsc && npm run sass",
+    "start": "npm run build && node src/app.js",
     "dev": "npm-run-all -p dev:*",
-    "dev:server": "tsx --no-check --watch src/index.ts",
-    "dev:client": "tsc --watch --project tsconfig.client.json --noCheck",
-    "dev:sass": "sass --watch public"
+    "dev:server": "tsx --no-check --watch src/app.js",
+    "dev:client": "tsc --project tsconfig.client.json --watch",
+    "dev:sass": "npm run sass",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "nodemon": "^3.1.9"
+  },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",
@@ -27,16 +43,5 @@
     "ts-jest": "^29.3.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "body-parser": "^1.20.3",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.13.2",
-    "nodemon": "^3.1.9"
   }
 }
