@@ -2,7 +2,7 @@
   "name": "fitlog-app",
   "version": "1.0.0",
   "description": "Fitlog Training Planner",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "sass": "npm-run-all --parallel sass:main sass:css",
     "sass:main": "sass public/styles.scss public/styles.css --no-source-map",

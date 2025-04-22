@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-
 import userRouter from './routes/user.route';
 import exerciseRouter from './routes/exercise.route';
 
@@ -15,17 +14,20 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('api/user', userRouter);
-app.use('api/exercise', exerciseRouter);
+app.use('/api/user', userRouter);
+app.use('/api/exercise', exerciseRouter);
 
-app.use(express.static(path.join(__dirname, 'public')));mongoose.connect(MONGO_URI)
-.then(() => {
-  console.log('MongoDB connected');
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.use(express.static(path.join(__dirname, '../public')));
+
+mongoose.connect(MONGO_URI)
+  .then(() => {
+    console.log('MongoDB connected');
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
   });
-})
-.catch((err) => {
-  console.error('MongoDB connection error:', err);
-});
+
 export default app;

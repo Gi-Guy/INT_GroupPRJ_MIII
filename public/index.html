@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INT Fullstack November 2024</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Burn them calories</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-
 <body>
-    <main>
-        <pre id="app"></pre>
-    </main>
+    <h1>Burn them calories</h1>
 
-    <script type="module">
-        import { initApp } from "./index.js";
-
-        initApp(document.getElementById("app"));
-    </script>
+    <div class="container">
+      <div class="tab-buttons">
+        <button id="loginTab" class="active">Login</button>
+        <button id="signupTab">Register</button>
+      </div>
+  
+      <form id="loginForm" class="active">
+        <h2>Fitness time !</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button class="submit-btn" type="submit">Login</button>
+      </form>
+  
+      <form id="signupForm">
+        <h2>Create an Account</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button class="submit-btn" type="submit">Register</button>
+      </form>
+    </div>
+      <script src="../public/scripts/dist/Login-Reg.js"> </script>
 </body>
-
 </html>
