@@ -9,7 +9,7 @@
     "sass:css": "sass public/css:public/css --no-source-map",
     "build": "tsc && npm run sass",
     "start": "npm run build && node src/app.js",
-    "dev": "nodemon src/app.js && npm-run-all -p dev:*",
+    "dev": "npm-run-all -p dev:*",
     "dev:server": "tsx --no-check --watch src/app.js",
     "dev:client": "tsc --project tsconfig.client.json --watch",
     "dev:sass": "npm run sass",
