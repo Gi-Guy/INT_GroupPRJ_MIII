@@ -10,7 +10,7 @@ export function displaySavedWorkouts() {
     savedWorkoutsContainer.appendChild(noWorkoutsMessage);
   } else {
     savedWorkouts.forEach((workout: { name: string; calories: number; description: string; category: string; rating: number }, index: number) => {
-      const card = createWorkoutCard(workout, index, false);  // Pass `false` to not show the image
+      const card = createWorkoutCard(workout, index);  // Pass `false` to not show the image
       savedWorkoutsContainer.appendChild(card);
     });
   }

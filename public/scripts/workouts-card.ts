@@ -40,7 +40,7 @@ const workouts: Workout[] = [
 ];
 
 // Function to create a workout card
-function createWorkoutCard(workout: Workout, index: number): HTMLElement {
+export function createWorkoutCard(workout: Workout, index: number): HTMLElement {
   const card = document.createElement('div');
   card.classList.add('workout-card');
 

@@ -111,8 +111,8 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES6",
+    "module": "CommonJS",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -121,9 +121,7 @@
     "rootDir": "./",
     "declaration": false,
     "sourceMap": false,
-    "allowJs": true,
-    "lib": ["DOM", "DOM.Iterable"],
-    "allowSyntheticDefaultImports": true
+    "allowJs": true
   },
   "include": [
     "./public/scripts/**/*.ts",
