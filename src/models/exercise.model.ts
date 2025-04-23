@@ -14,7 +14,7 @@ const exerciseSchema = new Schema({
         type: String,
         required: true,
     },
-    duration: {
+    totalCalories: {
         type: Number,
         required: true,
     },

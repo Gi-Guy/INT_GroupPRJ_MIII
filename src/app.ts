@@ -4,7 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import userRoutes from './routes/user.route';
-import exerciseRouter from './routes/exercise.route';
+import exerciseRoutes from './routes/exercise.route';
 import workoutPlanRoutes from './routes/workoutPlan.route';
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 
 app.use('/api/users', userRoutes);
-app.use('/api/exercise', exerciseRouter);
+app.use('/api/exercises', exerciseRoutes);
 app.use('/api/workoutPlan', workoutPlanRoutes);
 
 app.use(express.static(path.join(__dirname, '../public')));
