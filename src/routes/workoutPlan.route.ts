@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createPlan, getPlans, getPlanById } from '../controllers/workoutPlan.controller';
+import {  getPlans, getPlanById, createWorkoutPlan } from '../controllers/workoutPlan.controller';
 
 const router = Router();
 
-router.post('/', createPlan);
+router.post('/', createWorkoutPlan);
 router.get('/', getPlans);
 router.get('/:id', getPlanById);
 
