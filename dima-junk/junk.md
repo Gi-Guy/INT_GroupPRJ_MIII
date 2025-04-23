@@ -43,3 +43,59 @@ body {
   width: 100px;
   height: auto;
 }
+
+
+// home
+
+<section class="exercise-grid">
+        
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-1"><img src="/public/img/vector push up.png" alt="push up"></div>
+          <p class="exercise-title">Push Ups</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-2"><img src="/public/img/squats.png" alt="squats"></div>
+          <p class="exercise-title">Squats</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-3"><img src="/public/img/lunges.png" alt="lunges"></div>
+          <p class="exercise-title">Lunges</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-4"><img src="/public/img/cardio.jpg" alt=""></div>
+          <p class="exercise-title">Cardio</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-5"><img src="/public/img/burpee.jpg" alt="burpee"></div>
+          <p class="exercise-title">Burpees</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-6"> <img src="/public/img/Jumping Jacks.jpg" alt="Jumping Jacks"></div>
+          <p class="exercise-title">Jumping Jacks</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-7"><img src="/public/img/High Knees.jpg" alt="High Knees"></div>
+          <p class="exercise-title">High Knees</p>
+          <p>100cal/15min</p>
+        </div>
+    
+        <div class="exercise-card">
+          <div class="exercise-sketch sketch-8"><img src="/public/img/Plank.jpg" alt="Plank"></div>
+          <p class="exercise-title">Plank</p>
+          <p>100cal/15min</p>
+        </div>
+    
+      </section>
+    
