@@ -6,5 +6,5 @@ const router = Router();
 router.post('/', createWorkoutPlan);
 router.get('/', getPlans);
 router.get('/:id', getPlanById);
-
+//test
 export default router;
