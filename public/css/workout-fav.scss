@@ -1,0 +1,50 @@
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Filter section */
+.filter {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#min-calories {
+  padding: 8px;
+  font-size: 16px;
+  width: 150px;
+  margin-left: 10px;
+}
+
+/* Workout Cards Container */
+.workout-card button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.workout-card button:hover {
+  background-color: #0056b3;
+}
+
+.workout-card h3 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.workout-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}

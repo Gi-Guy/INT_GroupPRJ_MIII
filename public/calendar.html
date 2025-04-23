@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Tracker</title>
+  
+  <link rel="stylesheet" href="/public/css/dist/calendar.css">
+</head>
+<body>
+
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="month">Month Workouts</button>
+    <button class="tab-btn" data-tab="year">Year Calendar</button>
+  </div>
+
+  <section id="month" class="tab-content active">
+    <button id="markWorkout">Mark Today's Workout</button>
+    <div class="calendar-grid month-grid"></div>
+  </section>
+
+  <section id="year" class="tab-content">
+    <div class="year-grid"></div>
+  </section>
+
+  <script type="module" src="/public/scripts/dist/calendar.js"></script>
+</body>
+</html>
