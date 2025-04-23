@@ -1,12 +1,30 @@
 import { Request, Response } from 'express';
 import { ExerciseModel } from '../models/exercise.model';
 
+// export const createExercise = async (req: Request, res: Response) => {
+//   try {
+//     const { name, description, totalCalories } = req.body;
+//     const exercise = await ExerciseModel.create({ name, description, totalCalories });
+//     res.status(201).json(exercise);
+//   } catch (error) {
+//     console.error('Error creating exercise:', error);
+//     res.status(500).json({ error: 'Failed to create exercise' });
+//   }
+// };
 export const createExercise = async (req: Request, res: Response) => {
   try {
-    const { name, description, totalCalories } = req.body;
-    const exercise = await ExerciseModel.create({ name, description, totalCalories });
-    res.status(201).json(exercise);
-  } catch (error) {
+    const { name, description, totalCalories} = req.body;
+    const newExercise = {
+      id: 'ex-' + Date.now(),
+      name,
+      description,
+      totalCalories,
+      date: Date.now()
+    };
+    const created = await ExerciseModel.create(newExercise);
+    res.status(201).json(created);
+  } catch (err) {
+    console.error('Error creating exercise:', err);
     res.status(500).json({ error: 'Failed to create exercise' });
   }
 };
@@ -59,3 +77,7 @@ export const deleteExercise = async (req: Request, res: Response):Promise<void> 
     res.status(500).json({ error: 'Failed to delete exercise' });
   }
 };
+function randomUUID() {
+  throw new Error('Function not implemented.');
+}
+

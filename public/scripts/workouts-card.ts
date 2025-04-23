@@ -1,3 +1,4 @@
+// Define the workout data
 interface Workout {
   name: string;
   calories: number;
@@ -38,7 +39,7 @@ const workouts: Workout[] = [
   },
 ];
 
-
+// Function to create a workout card
 export function createWorkoutCard(workout: Workout, index: number): HTMLElement {
   const card = document.createElement('div');
   card.classList.add('workout-card');
@@ -58,9 +59,9 @@ export function createWorkoutCard(workout: Workout, index: number): HTMLElement 
   const saveButton = document.createElement('button');
   saveButton.textContent = 'Save Workout';
 
-
+  // Add functionality to save the workout to localStorage
   saveButton.addEventListener('click', () => {
-    saveWorkout(workout);  
+    saveWorkout(workout);  // Save workout to localStorage
   });
 
   card.appendChild(title);
@@ -72,11 +73,11 @@ export function createWorkoutCard(workout: Workout, index: number): HTMLElement 
   return card;
 }
 
-
+// Function to save the workout to localStorage
 function saveWorkout(workout: Workout) {
   const savedWorkouts = JSON.parse(localStorage.getItem('savedWorkouts') || '[]');
   
-  
+  // Check if the workout is already saved
   const isAlreadySaved = savedWorkouts.some((savedWorkout: Workout) => savedWorkout.name === workout.name);
   
   if (!isAlreadySaved) {
@@ -88,7 +89,7 @@ function saveWorkout(workout: Workout) {
   }
 }
 
-
+// Function to display saved workouts from localStorage
 function displaySavedWorkouts() {
   const savedWorkouts = JSON.parse(localStorage.getItem('savedWorkouts') || '[]');
   const savedWorkoutsContainer = document.getElementById('saved-workouts') as HTMLElement;
@@ -105,40 +106,40 @@ function displaySavedWorkouts() {
   }
 }
 
-
+// Function to filter workouts based on minimum calories
 function filterWorkouts() {
   const minCalories = parseInt((document.getElementById('min-calories') as HTMLInputElement).value, 10);
 
-  
+  // If the value isn't a number, use all workouts
   const filteredWorkouts = workouts.filter(workout => workout.calories >= minCalories);
 
   displayWorkouts(filteredWorkouts);
 }
 
-
+// Function to display all workouts
 function displayWorkouts(filteredWorkouts: Workout[]) {
   const workoutCardsContainer = document.getElementById('workout-cards') as HTMLElement;
-  workoutCardsContainer.innerHTML = ''; 
+  workoutCardsContainer.innerHTML = ''; // Clear previous cards
 
-
+  // If no workouts match the filter, show a message
   if (filteredWorkouts.length === 0) {
     const noWorkoutsMessage = document.createElement('p');
     noWorkoutsMessage.textContent = 'No workouts found with the selected calorie limit.';
     workoutCardsContainer.appendChild(noWorkoutsMessage);
   } else {
-    
+    // Otherwise, display the filtered workouts
     filteredWorkouts.forEach(workout => {
-      const card = createWorkoutCard(workout, 0); 
+      const card = createWorkoutCard(workout, 0); // No need for an index here
       workoutCardsContainer.appendChild(card);
     });
   }
 }
 
-
+// Event listener for the min-calories input
 document.getElementById('min-calories')?.addEventListener('input', filterWorkouts);
 
-
+// Load all workouts initially (with no filter applied)
 window.onload = () => {
-  displayWorkouts(workouts);  
-  displaySavedWorkouts();  
+  displayWorkouts(workouts);  // Display all workouts when the page loads
+  displaySavedWorkouts();  // Display saved workouts
 };

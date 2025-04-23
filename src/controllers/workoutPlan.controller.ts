@@ -3,42 +3,22 @@ import { v4 as uuidv4 } from 'uuid';
 import { WorkoutPlanModel } from '../models/workoutPlan.model';
 import { ExerciseModel } from '../models/exercise.model';
 
-export const createPlan = async (req: Request, res: Response): Promise<void> => {
+export const createWorkoutPlan = async (req: Request, res: Response) => {
   const { userId, targetCalories } = req.body;
+  const exercises = await ExerciseModel.find();
 
-  if (!userId || !targetCalories || typeof targetCalories !== 'number') {
-     res.status(400).json({ error: 'Invalid input' });
-     return;
-  }
+  const selected = [];
+  let total = 0;
 
-  try {
-    const allExercises = await ExerciseModel.find().lean();
-    const selectedExercises: any[] = [];
-    let currentCalories = 0;
-
-    for (const ex of allExercises) {
-      const calories = (ex as any).totalCalories || 0;
-      if (currentCalories + calories <= targetCalories) {
-        selectedExercises.push(ex);
-        currentCalories += calories;
-      }
-      if (currentCalories >= targetCalories * 0.9) break;
+  for (const ex of exercises) {
+    const cal = (ex as any).totalCalories || 0;
+    if (total + cal <= targetCalories) {
+      selected.push(ex);
+      total += cal;
     }
-
-    const newPlan = new WorkoutPlanModel({
-      id: uuidv4(),
-      userId,
-      targetCalories,
-      exercises: selectedExercises,
-      totalCalories: currentCalories,
-      createdAt: Date.now(),
-    });
-
-    await newPlan.save();
-    res.status(201).json(newPlan);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to create workout plan' });
   }
+
+  res.status(200).json({ exercises: selected });
 };
 
 export const getPlans = async (_: Request, res: Response): Promise<void> => {
