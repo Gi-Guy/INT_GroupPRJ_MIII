@@ -99,3 +99,6 @@ body {
     
       </section>
     
+
+
+    "dev": "npm-run-all -p dev:*"
